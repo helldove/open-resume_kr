@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { getAllFontFamiliesToLoad } from "components/fonts/lib";
 
-const FontsZhCSR = dynamic(() => import("components/fonts/FontsZh"), {
+const FontsEACSR = dynamic(() => import("components/fonts/FontsEA"), {
   ssr: false,
 });
 
@@ -12,13 +12,16 @@ const FontsZhCSR = dynamic(() => import("components/fonts/FontsZh"), {
  * Reference: https://prawira.medium.com/react-conditional-import-conditional-css-import-110cc58e0da6
  */
 export const NonEnglishFontsCSSLazyLoader = () => {
-  const [shouldLoadFontsZh, setShouldLoadFontsZh] = useState(false);
+  const [shouldLoadFontsEA, setShouldLoadFontsEA] = useState(false);
 
   useEffect(() => {
-    if (getAllFontFamiliesToLoad().includes("NotoSansSC")) {
-      setShouldLoadFontsZh(true);
+    if (
+      getAllFontFamiliesToLoad().includes("NotoSansSC") ||
+      getAllFontFamiliesToLoad().includes("IBMPlexSansKR")
+    ) {
+      setShouldLoadFontsEA(true);
     }
   }, []);
 
-  return <>{shouldLoadFontsZh && <FontsZhCSR />}</>;
+  return <>{shouldLoadFontsEA && <FontsEACSR />}</>;
 };
