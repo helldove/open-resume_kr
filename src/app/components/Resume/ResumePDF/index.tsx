@@ -116,7 +116,7 @@ export const ResumePDF = ({
           <View
             style={{
               ...styles.flexCol,
-              padding: `${spacing[0]} ${spacing[20]}`,
+              padding: `${spacing[5]} ${spacing[20]}`,
             }}
           >
             <ResumePDFProfile
